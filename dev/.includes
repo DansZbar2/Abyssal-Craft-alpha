@@ -1,6 +1,7 @@
 header.js
 api/armorStuff.js
 Ablocks/terrain.js
+Ablocks/altar&pillars/altar.js
 Aitems/items.js
 Aitems/food.js
 Aitems/tools.js
