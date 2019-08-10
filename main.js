@@ -2,13 +2,14 @@
 BUILD INFO:
   dir: dev
   target: main.js
-  files: 10
+  files: 12
 */
 
 
 
 // file: header.js
 
+IMPORT("dimensions");
 IMPORT("AdvancedEvents");
 IMPORT("SoundAPI");
 //IMPORT("ShootLib");
@@ -48,32 +49,32 @@ AE:[],
 IEt:[],    
 addEffectToArmor:function(params){
 Callback.addCallback("tick", function(){    
-if(Entity.getArmorSlot(this.params.entity, this.params.slot) == this.params.id){
-Entity.addEffect(this.params.entity, this.params.effectID, this.params.effectTime, this.params.powerLVL, false, false);   
+if(Entity.getArmorSlot(params.entity, params.slot).id == params.id){
+Entity.addEffect(params.entity, params.effectID, params.effectTime, params.powerLVL, false, false);   
   }
 });
 },
 addArmorToEntity:function(params){
-if(!this.params.entity)
+if(!params.entity)
 return Logger.LogError("{addArmorToEntity} params.entity должен быть строкой или числом", "EntitysSS");
-if(!this.params.slot)
+if(!params.slot)
 return Logger.LogError("{addArmorToEntity} params.slot должен быть числом", "EntitysSS");    
-if(this.params.id)
+if(!params.id)
 return Logger.LogError("{addArmorToEntity} params.id должен быть строкой или числом", "EntitysSS");
-if(this.params.data)
+if(!params.data)
 return Logger.LogError("{addArmorToEntity} params.data должен быть числом", "EntitysSS");        
 AE.push(params);
 },
 addItemToHand:function(params){
-if(!this.params.entity)
+if(!params.entity)
 return Logger.LogError("{addItemToHand} params.entity должен быть строкой или числом", "EntitysSS");
-if(!this.params.slot)  
+if(!params.slot)  
 return Logger.LogError("{addItemToHand} params.slot должен быть числом", "EntitysSS");    
-if(this.params.id)    
+if(!params.id)    
 return Logger.LogError("{addItemToHand} params.id должен быть строкой или числом", "EntitysSS");
-if(this.params.count)
+if(!params.count)
 return Logger.LogError("{addItemToHand} params.data должен быть числом", "EntitysSS");  
-if(this.params.data)
+if(!params.data)
 return Logger.LogError("{addItemToHand} params.data должен быть числом", "EntitysSS");  
 AI.push(params);
 },
@@ -106,10 +107,364 @@ Entity.setCarriedItem(IEt.entity, IEt.id, IEt.count, IEt.data);
 
 // file: Ablocks/terrain.js
 
+var BLOCK_TYPE_STONE = Block.createSpecialType({
+    base: 1,
+    solid: true,
+    destroytime: 3,
+    explosionres: 3,
+    opaque: true
+}, "stone");
+
+var BLOCK_TYPE_ORE = Block.createSpecialType({
+    base: 1,
+    solid: true,
+    destroytime: 5,
+    explosionres: 4,
+    opaque: true
+}, "stone");
+
+
 IDRegistry.genBlockID("stoneDark"); 
 Block.createBlock("stoneDark", [
-    {name: "Dark Stone", texture: [["DS", 0]],inCreative: true}], "opaque");
-ToolAPI.registerBlockMaterial(BlockID.stoneDark, "stone", 1, true);
+{name: "Dark Stone", texture: [["DS", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+
+IDRegistry.genBlockID("dirtDark");
+Block.createBlockWithRotation("dirtDark", [
+{name: "DarkLends Dirt", texture: [["DLGbottom", 0], ["DLGtop", 0], ["DLGsides", 0], ["DLGsides", 0], ["DLGsides", 0], ["DLGsides", 0]], inCreative: true}], "opaque");
+ToolAPI.registerBlockMaterial(BlockID.dirtDark, "dirt", 0, true);
+
+IDRegistry.genBlockID("stoneAbyssal"); 
+Block.createBlock("stoneAbyssal", [
+{name: "Abyssal Waste Stone", texture: [["AS", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+
+IDRegistry.genBlockID("stoneABri"); 
+Block.createBlock("stoneABri", [
+{name: "Abyssal Waste Bricks", texture: [["ASB", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+Recipes.addFurnace(BlockID.stoneAbyssal, BlockID.stoneABri, 0);
+
+IDRegistry.genBlockID("stoneABrik"); 
+Block.createBlock("stoneABrik", [
+{name: "Abyssal Waste Bricks", texture: [["ASBf", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+Recipes.addShaped({id: BlockID.stoneABrik, count: 4, data: 0}, [
+"xx",
+"xx",
+], ['x', BlockID.stoneAbyssal, 0]);
+
+
+
+
+// file: Adimensions/Abys.js
+
+const SKY_COLOR = [0.4, 0.4, 0.5];
+const FOG_COLOR = [0.3, 0.3, 0.5];
+var inWaste = false;
+
+
+var AbyssalWastelands = new Dimension({
+    name: "AbyssalWastelands",    
+    generation: {
+        layers: [           
+          // major islands
+            { 
+                range: [0, 65],
+                noise: {
+                    octaves: {
+                        count: 4,
+                        weight: 0.9,
+                        scale: [1.96, .95, 1.96]
+                    }
+                },     
+                gradient: [[1.25, -1.12], [.32, .51], [.63, -.4], [9.4, -8], [1.3, -.81]],       
+                terrain: {
+                    base: BlockID.stoneAbyssal,
+                    cover: {
+                        height: 5,
+                        top: BlockID.stoneAbyssal,
+                        block: BlockID.stoneAbyssal
+                    }
+                }
+            },
+        ],
+        
+        decoration: {
+        // biome: 34   
+        }
+    },
+    
+    environment: {
+        sky: SKY_COLOR,
+        fog: FOG_COLOR
+    },
+    callbacks:{
+       tick: function() { 
+},
+generateChunk: function(chunkX, chunkZ) { 
+
+
+
+},      
+loaded: function(){
+inWaste = true;    
+},
+unloaded: function(){
+inWaste = false; 
+}
+}
+});
+
+
+var ABWTransferSequence = new TransferSequence(AbyssalWastelands);
+ABWTransferSequence.setPortalTimeout(40);
+
+ABWTransferSequence.setPortalOverlay(new PortalOverlayWindow({
+    frames: 64, 
+    rate: 22, 
+    fade: 1, 
+    texture: "AG_animation"
+}));
+
+ABWTransferSequence.setLoadingScreenParams({
+    texture: "default_dimension_loading_screen"
+});
+
+PortalRegistry.newPortalBlock("ABWPortal", ["AG", 0], ABWTransferSequence.getPortal(), {type: "u-plane", frameId: BlockID.stoneAbyssal}, true);
+ABWTransferSequence.setPortalTiles(BlockID.ABWPortal);
+
+
+
+
+
+var shape = new PortalShape();
+shape.setPortalId(BlockID.ABWPortal);
+shape.setFrameIds(BlockID.stoneAbyssal);
+shape.setMinSize(2, 3);
+
+ABWTransferSequence.setPortalBuilder(shape.getBuilder());
+
+Callback.addCallback("ItemUse", function(coords, item) {
+    if (item.id == ItemID.keyABW) {
+        var rect = shape.findPortal(coords.relative.x, coords.relative.y, coords.relative.z);
+        if (rect) {
+            shape.buildPortal(rect, false);
+        }
+    }
+});
+
+Callback.addCallback("DestroyBlock", function(pos, block){
+    if (block.id == BlockID.stoneAbyssal || block.id == BlockID.ABWPortal) {
+        DimensionHelper.eliminateIncorrectPlacedPortals(pos, BlockID.ABWPortal, [4]);
+    }
+});
+
+
+
+
+// file: Ablocks/ores.js
+
+IDRegistry.genBlockID("oreAbyssalinite"); 
+Block.createBlock("oreAbyssalinite", [
+{name: "Abyssalinite Ore", texture:[["AO", 0]],inCreative: true}],BLOCK_TYPE_ORE);
+Block.setDestroyLevel("oreAbyssalinite", 3);
+
+IDRegistry.genBlockID("oreCoral"); 
+Block.createBlock("oreCoral", [
+{name: "Coralium Ore", texture:[["CO", 0]],inCreative: true}],BLOCK_TYPE_ORE);
+Block.setDestroyLevel("oreCoral", 3);
+
+IDRegistry.genBlockID("oreCoralInfused"); 
+Block.createBlock("oreCoralInfused", [
+{name: "Coralium Infused Stone", texture:[["CIS", 0]],inCreative: true}],BLOCK_TYPE_ORE);
+Block.setDestroyLevel("oreCoral", 3);
+
+IDRegistry.genBlockID("oreNitre"); 
+Block.createBlock("oreNitre", [
+{name: "Nitre Ore", texture:[["CIS", 0]],inCreative: true}],BLOCK_TYPE_ORE);
+Block.setDestroyLevel("oreNitre", 4);
+	Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){
+for(var i = 0; i < 1; i++){ 
+var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 4, 42); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, BlockID.stoneDark, 0, randomInt(2, 5));     
+   }  
+});
+	
+Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){
+for(var i = 0; i < 3; i++){ 
+var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 4, 25); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, BlockID.oreAbyssalinite, 0, randomInt(1, 5)); 
+   }    
+});  
+
+    
+Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){
+for(var i = 0; i < 4; i++){ 
+var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 4, 23); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, BlockID.oreCoral, 0, randomInt(1, 4));     
+   }  
+}); 
+
+Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){
+for(var i = 0; i < 4; i++){ 
+var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 4, 26); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, BlockID.oreCoralInfused, 0, randomInt(1, 3));     
+   }  
+});
+
+Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){
+for(var i = 0; i < 2; i++){ 
+var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 4, 34); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, BlockID.oreNitre, 0, randomInt(1, 3));     
+   }  
+});    
+  }
+});
+
+//DimensionOres
+IDRegistry.genBlockID("oreAiron"); 
+Block.createBlock("oreAiron", [
+{name: "Abyssal Iron Ore", texture:[["AIO", 0]],inCreative: true}],BLOCK_TYPE_ORE);
+
+
+IDRegistry.genBlockID("oreAgold"); 
+Block.createBlock("oreAgold", [
+{name: "Abyssal Gold Ore", texture:[["AGO", 0]],inCreative: true}],BLOCK_TYPE_ORE);
+
+
+IDRegistry.genBlockID("oreAdiamond"); 
+Block.createBlock("oreAdiamond", [
+{name: "Abyssal Diamond Ore", texture:[["ADO", 0]],inCreative: true}],BLOCK_TYPE_ORE);
+
+
+IDRegistry.genBlockID("oreAnitre"); 
+Block.createBlock("oreAnitre", [
+{name: "Abyssal Nitre Ore", texture:[["ANO", 0]],inCreative: true}],BLOCK_TYPE_ORE);
+
+
+IDRegistry.genBlockID("oreAcorpearl"); 
+Block.createBlock("oreAcorpearl", [
+{name: "Pearlescent Coralium Ore", texture:[["APCorO", 0]],inCreative: true}],BLOCK_TYPE_ORE);
+Block.setDestroyLevel("oreAcorpearl", 3);
+
+/*
+Callback.addCallback("tick", function(){
+if(AbyssalWastelands.isInDimension()){
+Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){
+for(var i = 0; i < 14; i++){ 
+var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 4, 78); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, BlockID.oreAiron, 0, randomInt(1, 4),true);   
+}  
+});    
+   
+Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){
+for(var i = 0; i < 3; i++){ 
+var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 4, 78); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, BlockID.oreAgold, 0, randomInt(1, 4),false);   
+}  
+}); 
+
+Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){
+for(var i = 0; i < 2; i++){ 
+var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 4, 78); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, BlockID.oreAdiamond, 0, randomInt(1, 4),false);   
+}  
+});
+   
+Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){
+for(var i = 0; i < 2; i++){ 
+var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 4, 78); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, BlockID.oreAnitre, 0, randomInt(1, 4),false);   
+}  
+});    
+
+Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){
+for(var i = 0; i < 3; i++){ 
+var coords = GenerationUtils.randomCoords(chunkX, chunkZ, 4, 78); 
+GenerationUtils.generateOre(coords.x, coords.y, coords.z, BlockID.oreAcorpearl, 0, randomInt(1, 4),false);   
+}  
+});
+  } 
+});*/
+
+
+Callback.addCallback("PostLoaded", function(){ 
+Block.registerDropFunction("oreAbyssalinite", function(coords, blockID, blockData, level, enchant){
+    if(level >= 3){
+        if(enchant.silk){
+            return [[BlockID.oreAbyssalinite, 1, 0]];
+        }
+        var drop = [[BlockID.oreAbyssalinite, 1, 0]];
+        if(Math.random() < enchant.fortune/3 - 1/3){drop.push(drop[0]);}
+        ToolAPI.dropOreExp(coords, 3, 7, enchant.experience);
+        return drop;
+    }
+    return [];
+});
+Recipes.addFurnace(BlockID.oreAbyssalinite, ItemID.abbIron, 0);
+
+Block.registerDropFunction("oreCoral", function(coords, blockID, blockData, level, enchant){
+    if(level >= 3){
+        if(enchant.silk){
+            return [[BlockID.oreCoral, 1, 0]];
+        }
+        var drop = [[ItemID.coralGem, randomInt(1,3), 0]];
+        if(Math.random() < enchant.fortune/3 - 1/3){drop.push(drop[0]);}
+        ToolAPI.dropOreExp(coords, 3, 7, enchant.experience);
+        return drop;
+    }
+    return [];
+});
+Recipes.addFurnace(BlockID.oreCoral, ItemID.coralGem, 0);
+
+Block.registerDropFunction("oreCoralInfused", function(coords, blockID, blockData, level, enchant){
+    if(level >= 3){
+        if(enchant.silk){
+            return [[BlockID.oreCoralInfused, 1, 0]];
+        }
+        var drop = [[ItemID.coralPearl, 1, 0]];
+        if(Math.random() < enchant.fortune/3 - 1/3){drop.push(drop[0]);}
+        ToolAPI.dropOreExp(coords, 3, 7, enchant.experience);
+        return drop;
+    }
+    return [];
+});
+Recipes.addFurnace(BlockID.oreCoralInfused, ItemID.coralPearl, 0);
+
+Block.registerDropFunction("oreNitre", function(coords, blockID, blockData, level, enchant){
+    if(level >= 3){
+        if(enchant.silk){
+            return [[BlockID.oreNitre, 1, 0]];
+        }
+        var drop = [[ItemID.nitrePeace, randomInt(1, 3), 0]];
+        if(Math.random() < enchant.fortune/3 - 1/3){drop.push(drop[0]);}
+        ToolAPI.dropOreExp(coords, 3, 7, enchant.experience);
+        return drop;
+    }
+    return [];
+});
+Recipes.addFurnace(BlockID.oreNitre, ItemID.nitrePeace, 0);
+
+Recipes.addFurnace(BlockID.oreAiron, 265, 0);
+Recipes.addFurnace(BlockID.oreAgold, 266, 0);
+
+Block.registerDropFunction("oreAdiamond", function(coords, blockID, blockData, level, enchant){
+    if(level >= 3){
+        if(enchant.silk){
+            return [[BlockID.oreAdiamond, 1, 0]];
+        }
+        var drop = [[264, randomInt(1, 3), 0]];
+        if(Math.random() < enchant.fortune/3 - 1/3){drop.push(drop[0]);}
+        ToolAPI.dropOreExp(coords, 3, 7, enchant.experience);
+        return drop;
+    }
+    return [];
+});
+Recipes.addFurnace(BlockID.oreAdiamond, 264, 0);
+});
+
+
+
+
+// file: Ablocks/flora.js
+
 
 
 
@@ -132,19 +487,6 @@ IDRegistry.genItemID("coralIron");
 Item.createItem("coralIron", "Coralium Ingot", {name: "RCI"});
 Recipes.addFurnace(ItemID.coralChunck,ItemID.coralIron);
 
-IDRegistry.genItemID("coralNugget");
-Item.createItem("coralNugget", "Coralium Nugget", {name: "nugget_coralium"});
-
-IDRegistry.genItemID("coralGem");
-Item.createItem("coralGem", "Coralium Gem", {name: "CG"});
-Recipes.addFurnace(ItemID.coralChunck,ItemID.coralIron);
-
-IDRegistry.genItemID("coralPearl");
-Item.createItem("coralPearl", "Coralium Pearl", {name: "CP"});
-
-IDRegistry.genItemID("coralPlate");
-Item.createItem("coralPlate", "Coralium Plate", {name: "CPP"});
-
 IDRegistry.genItemID("dreadPeace");
 Item.createItem("dreadPeace", "Dredalinite Peace", {name: "DSOA"});
 
@@ -159,6 +501,24 @@ Recipes.addShaped({id: ItemID.dreadChunck, count: 1, data: 0}, [
 IDRegistry.genItemID("dreadIron");
 Item.createItem("dreadIron", "Dredalinite Ingot", {name: "DI"});
 Recipes.addFurnace(ItemID.dreadChunck,ItemID.dreadIron);
+
+IDRegistry.genItemID("nitrePeace");
+Item.createItem("nitrePeace", "Nitre", {name: "nitre"});
+
+IDRegistry.genItemID("coralNugget");
+Item.createItem("coralNugget", "Coralium Nugget", {name: "nugget_coralium"});
+
+IDRegistry.genItemID("coralGem");
+Item.createItem("coralGem", "Coralium Gem", {name: "CG"});
+Recipes.addFurnace(ItemID.coralChunck,ItemID.coralIron);
+
+IDRegistry.genItemID("coralPearl");
+Item.createItem("coralPearl", "Coralium Pearl", {name: "CP"});
+
+IDRegistry.genItemID("coralPlate");
+Item.createItem("coralPlate", "Coralium Plate", {name: "CPP"});
+
+
 //Upgrade kits
 IDRegistry.genItemID("cobUpgr");
 Item.createItem("cobUpgr", "Cobblestone Upgrade", {name: "CobU"});
@@ -305,23 +665,67 @@ Recipes.addShaped({id: ItemID.dreShovel, count: 1, data: 0}, [
 "ax",
 ], ['x', ItemID.dreUpgr, 0, 'a', ItemID.abyssShovel, 0]);
 });
-
-
-
-
-
-
-
-
-
-
-
-
+//PortalItems
+IDRegistry.genItemID("keyABW");
+Item.createItem("keyABW", "Geateway Key", {name: "CPP"});
 
 
 
 
 // file: Aitems/food.js
+
+IDRegistry.genItemID("plateFood");
+Item.createItem("plateFood", "Food Plate", {name: "plate"},{isTech:false});
+Recipes.addShaped({id: ItemID.plateFood, count: 2, data: 0}, [
+"xx",
+], ['x', 265, 0]);
+
+IDRegistry.genItemID("plateFoodD");
+Item.createItem("plateFoodD", "Dirty Food Plate", {name: "dirtyplate"},{isTech:false});
+
+IDRegistry.genItemID("plateFoodC");
+Item.createFoodItem("plateFoodC", "Chicken on a Plate", {name: "ChiP"},{isTech:false,food: 11});
+Callback.addCallback("FoodEaten",function(heal, satRatio){
+if(Player.getCarriedItem().id==ItemID.plateFoodC){
+Player.addItemToInventory(ItemID.plateFoodD, 1);
+}});
+
+IDRegistry.genItemID("plateFoodP");
+Item.createFoodItem("plateFoodP", "Porkchop on a Plate", {name: "PorP"},{isTech:false,food: 15});
+Callback.addCallback("FoodEaten",function(heal, satRatio){
+if(Player.getCarriedItem().id==ItemID.plateFoodP){
+Player.addItemToInventory(ItemID.plateFoodD, 1);
+}});
+
+IDRegistry.genItemID("plateFoodB");
+Item.createFoodItem("plateFoodB", "Beef on a Plate", {name: "BeeP"},{isTech:false,food: 13});
+Callback.addCallback("FoodEaten",function(heal, satRatio){
+if(Player.getCarriedItem().id==ItemID.plateFoodB){
+Player.addItemToInventory(ItemID.plateFoodD, 1);
+}});
+
+IDRegistry.genItemID("plateFoodF");
+Item.createFoodItem("plateFoodF", "Fish on a Plate", {name: "BeeP"},{isTech:false,food: 13});
+Callback.addCallback("FoodEaten",function(heal, satRatio){
+if(Player.getCarriedItem().id==ItemID.plateFoodF){
+Player.addItemToInventory(ItemID.plateFoodD, 1);
+}});
+
+IDRegistry.genItemID("eggF");
+Item.createFoodItem("eggF", "Fried Egg", {name: "friedegg"},{isTech:false,food: 7});
+Recipes.addFurnace(344, ItemID.eggF, 0);
+
+IDRegistry.genItemID("plateEggF");
+Item.createFoodItem("plateEggF", "Fried Egg on a Plate", {name: "eggp"},{isTech:false,food: 9});
+Callback.addCallback("FoodEaten",function(heal, satRatio){
+if(Player.getCarriedItem().id==ItemID.plateFoodF){
+Player.addItemToInventory(ItemID.plateFoodD, 1);
+}});
+
+
+
+
+
 
 
 
@@ -728,16 +1132,16 @@ powerLVL:2
 
 //tier:4
 IDRegistry.genItemID("DADSHelm");
-Item.createArmorItem("DADSHelm", "Dreadium Samurai helmet", {name: "ADDH"}, {type: "helmet", armor: 7, durability: 520, texture: "armor/dreadiumS_1.png", isTech:false});
+Item.createArmorItem("DADSHelm", "Dreadium Samurai helmet", {name: "ADSH"}, {type: "helmet", armor: 7, durability: 520, texture: "armor/dreadiumS_1.png", isTech:false});
 
 IDRegistry.genItemID("DADSCh");
-Item.createArmorItem("DADSCh", "Dreadium Samurai chestplate", {name: "ADDC"}, {type: "chestplate", armor: 12, durability: 643, texture: "armor/dreadiumS_1.png", isTech:false});
+Item.createArmorItem("DADSCh", "Dreadium Samurai chestplate", {name: "ADSC"}, {type: "chestplate", armor: 12, durability: 643, texture: "armor/dreadiumS_1.png", isTech:false});
 
 IDRegistry.genItemID("DADSLeg");
-Item.createArmorItem("DADSLeg", "Dreadium Samurai leggins", {name: "ADDP"}, {type: "leggings", armor: 8, durability:516, texture: "armor/dreadiumS_2.png", isTech:false});
+Item.createArmorItem("DADSLeg", "Dreadium Samurai leggins", {name: "ADSP"}, {type: "leggings", armor: 8, durability:516, texture: "armor/dreadiumS_2.png", isTech:false});
 
 IDRegistry.genItemID("DADSBoot");
-Item.createArmorItem("DADSBoot", "Dreadium Samurai boots", {name: "ADDB"}, {type: "boots", armor: 5, durability: 498, texture: "armor/dreadiumS_1.png", isTech:false});
+Item.createArmorItem("DADSBoot", "Dreadium Samurai boots", {name: "ADSB"}, {type: "boots", armor: 5, durability: 498, texture: "armor/dreadiumS_1.png", isTech:false});
 
 //EFFECTS: Resistance 4, Speed III, Fire Resistance II, Strength II
 var srtgfdads = new EntitysSS.addEffectToArmor({
@@ -787,16 +1191,16 @@ var Zombie_Abbysal = new Mob({
          w: .8,
          h: 1.8
     },
-    skin:"mob/abyssal_zombie.png",
-    spawn:.8,
+    skin:"mob/zombies/abyssal_zombie.png",
+    spawn:{
+    chance:1,      
+    biomes:-1,   
+    time:[{start:0,end:23999}]},  
     loot:[367],
     ai:32
 });
 
-Zombie_Abbysal.registerEgg({
-    name:"egg_zombie",
-    meta:0
-});
+Zombie_Abbysal.registerEgg("egg_zombie");
 
 var Zombie_Abbysal_End = new Mob({
     sid:"Zombie_Abbysal_End",
@@ -807,28 +1211,21 @@ var Zombie_Abbysal_End = new Mob({
          w: .8,
          h: 1.8
     },
-    skin:"mob/abyssal_zombie.png",
-    spawn:.6,
+    skin:"mob/zombies/abyssal_zombie_end.png",
+    spawn:{
+    chance:1.5,      
+    biomes:9,   
+    time:[{start:0,end:23999}]},
     loot:[367],
     ai:38
 });
 
-Zombie_Abbysal_End.registerEgg({
-    name:"egg_zombie",
-    meta:0
-});
+Zombie_Abbysal_End.registerEgg("egg_zombie");
 
 
 
 
 // file: Amobs/unpeasful.js
-
-
-
-
-
-// file: Adimensions/Abys.js
-
 
 
 

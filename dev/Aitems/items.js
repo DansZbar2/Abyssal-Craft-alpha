@@ -11,11 +11,37 @@ IDRegistry.genItemID("coralChunck");
 Item.createItem("coralChunck", "Coralium Chunck", {name: "CC"});
 
 IDRegistry.genItemID("coralIron");
-Item.createItem("coralIron", "Coralium Ingot", {name: "RCI"});
+Item.createItem("coralIron", "Reinforced Coralium Ingot", {name: "RCI"});
 Recipes.addFurnace(ItemID.coralChunck,ItemID.coralIron);
 
+IDRegistry.genItemID("dreadPeace");
+Item.createItem("dreadPeace", "Dreadalinite Peace", {name: "DSOA"});
+
+IDRegistry.genItemID("dreadChunck");
+Item.createItem("dreadChunck", "Dreadalinite Chunck", {name: "DAC"});
+
+Recipes.addShaped({id: ItemID.dreadChunck, count: 1, data: 0}, [
+"xx",
+"xx"
+], ['x', ItemID.dreadPeace, 0]);
+
+IDRegistry.genItemID("dreadIron");
+Item.createItem("dreadIron", "Dreadalinite Ingot", {name: "DI"});
+Recipes.addFurnace(ItemID.dreadChunck,ItemID.dreadIron);
+
+IDRegistry.genItemID("nitrePeace");
+Item.createItem("nitrePeace", "Nitre", {name: "nitre"});
+
 IDRegistry.genItemID("coralNugget");
-Item.createItem("coralNugget", "Coralium Nugget", {name: "nugget_coralium"});
+Item.createItem("coralNugget", "Reinforced Coralium Nugget", {name: "nugget_coralium"});
+//Ethaxium
+IDRegistry.genItemID("ethBrick");
+Item.createItem("ethBrick", "Ethaxium Brick", {name: "EB"});
+Recipes.addFurnace(BlockID.Etx,ItemID.ethBrick);
+
+IDRegistry.genItemID("ethIron");
+Item.createItem("nitrePeace", "Nitre", {name: "EI"});
+
 
 IDRegistry.genItemID("coralGem");
 Item.createItem("coralGem", "Coralium Gem", {name: "CG"});
@@ -25,22 +51,9 @@ IDRegistry.genItemID("coralPearl");
 Item.createItem("coralPearl", "Coralium Pearl", {name: "CP"});
 
 IDRegistry.genItemID("coralPlate");
-Item.createItem("coralPlate", "Coralium Plate", {name: "CPP"});
+Item.createItem("coralPlate", "Reinforced Coralium Plate", {name: "CPP"});
 
-IDRegistry.genItemID("dreadPeace");
-Item.createItem("dreadPeace", "Dredalinite Peace", {name: "DSOA"});
 
-IDRegistry.genItemID("dreadChunck");
-Item.createItem("dreadChunck", "Dredalinite Chunck", {name: "DAC"});
-
-Recipes.addShaped({id: ItemID.dreadChunck, count: 1, data: 0}, [
-"xx",
-"xx"
-], ['x', ItemID.dreadPeace, 0]);
-
-IDRegistry.genItemID("dreadIron");
-Item.createItem("dreadIron", "Dredalinite Ingot", {name: "DI"});
-Recipes.addFurnace(ItemID.dreadChunck,ItemID.dreadIron);
 //Upgrade kits
 IDRegistry.genItemID("cobUpgr");
 Item.createItem("cobUpgr", "Cobblestone Upgrade", {name: "CobU"});
@@ -163,39 +176,79 @@ Recipes.addShaped({id: ItemID.abyssShovel, count: 1, data: 0}, [
 "ax",
 ], ['x', ItemID.abyUpgr, 0, 'a', 277, 0]);
 });
-IDRegistry.genItemID("dreUpgr");
-Item.createItem("dreUpgr", "Dredium Upgrade", {name: "DreU"});
+IDRegistry.genItemID("corUpgr");
+Item.createItem("corUpgr", "Coralium Upgrade", {name: "CorU"});
 
+Recipes.addShaped({id: ItemID.corUpgr, count: 1, data: 0}, [
+     "ax",
+     "xr",
+], ['x', ItemID.coralIron, 0, 'a', ItemID.abbIron, 0, 'r', ItemID.abyUpgr, 0]);
+Callback.addCallback("PostLoaded", function(){  
+Recipes.addShaped({id: ItemID.corSword, count: 1, data: 0}, [
+"ax",
+], ['x', ItemID.corUpgr, 0, 'a', ItemID.abyssSword, 0]);
+Recipes.addShaped({id: ItemID.corAxe, count: 1, data: 0}, [
+"ax",
+], ['x', ItemID.corUpgr, 0, 'a', ItemID.abyssAxe, 0]);
+Recipes.addShaped({id: ItemID.corPickaxe, count: 1, data: 0}, [
+"ax",
+], ['x', ItemID.corUpgr, 0, 'a', ItemID.abyssPickaxe, 0]);
+Recipes.addShaped({id: ItemID.corHoe, count: 1, data: 0}, [
+"ax",
+], ['x', ItemID.corUpgr, 0, 'a', ItemID.abyssHoe, 0]);
+Recipes.addShaped({id: ItemID.corShovel, count: 1, data: 0}, [
+"ax",
+], ['x', ItemID.corUpgr, 0, 'a', ItemID.abyssShovel, 0]);
+});
+
+IDRegistry.genItemID("dreUpgr");
+Item.createItem("dreUpgr", "Dreadalinite Upgrade", {name: "DreU"});
 Recipes.addShaped({id: ItemID.dreUpgr, count: 1, data: 0}, [
      "ax",
      "xr",
-], ['x', ItemID.dreadIron, 0, 'a', ItemID.abbIron, 0, 'r', ItemID.abyUpgr, 0]);
+], ['x', ItemID.dreadIron, 0, 'a', ItemID.coralIron, 0, 'r', ItemID.corUpgr, 0]);
 Callback.addCallback("PostLoaded", function(){  
 Recipes.addShaped({id: ItemID.dreSword, count: 1, data: 0}, [
 "ax",
-], ['x', ItemID.dreUpgr, 0, 'a', ItemID.abyssSword, 0]);
+], ['x', ItemID.dreUpgr, 0, 'a', ItemID.corSword, 0]);
 Recipes.addShaped({id: ItemID.dreAxe, count: 1, data: 0}, [
 "ax",
-], ['x', ItemID.dreUpgr, 0, 'a', ItemID.abyssAxe, 0]);
+], ['x', ItemID.dreUpgr, 0, 'a', ItemID.corAxe, 0]);
 Recipes.addShaped({id: ItemID.drePickaxe, count: 1, data: 0}, [
 "ax",
-], ['x', ItemID.dreUpgr, 0, 'a', ItemID.abyssPickaxe, 0]);
+], ['x', ItemID.dreUpgr, 0, 'a', ItemID.corPickaxe, 0]);
 Recipes.addShaped({id: ItemID.dreHoe, count: 1, data: 0}, [
 "ax",
-], ['x', ItemID.dreUpgr, 0, 'a', ItemID.abyssHoe, 0]);
+], ['x', ItemID.dreUpgr, 0, 'a', ItemID.corHoe, 0]);
 Recipes.addShaped({id: ItemID.dreShovel, count: 1, data: 0}, [
 "ax",
-], ['x', ItemID.dreUpgr, 0, 'a', ItemID.abyssShovel, 0]);
+], ['x', ItemID.dreUpgr, 0, 'a', ItemID.corShovel, 0]);
 });
 
+IDRegistry.genItemID("ethUpgr");
+Item.createItem("ethUpgr", "Ethaxium Upgrade", {name: "EthU"});
+Recipes.addShaped({id: ItemID.dreUpgr, count: 1, data: 0}, [
+     "ad",
+     "xr",
+], ['x', ItemID.ethIron, 0, 'd', ItemID.ethBrick, 0, 'a', ItemID.dreadIron, 0, 'r', ItemID.dreUpgr, 0]);
+Callback.addCallback("PostLoaded", function(){  
+Recipes.addShaped({id: ItemID.dreSword, count: 1, data: 0}, [
+"ax",
+], ['x', ItemID.ethUpgr, 0, 'a', ItemID.ethSword, 0]);
+Recipes.addShaped({id: ItemID.dreAxe, count: 1, data: 0}, [
+"ax",
+], ['x', ItemID.ethUpgr, 0, 'a', ItemID.ethAxe, 0]);
+Recipes.addShaped({id: ItemID.drePickaxe, count: 1, data: 0}, [
+"ax",
+], ['x', ItemID.ethUpgr, 0, 'a', ItemID.ethPickaxe, 0]);
+Recipes.addShaped({id: ItemID.dreHoe, count: 1, data: 0}, [
+"ax",
+], ['x', ItemID.ethUpgr, 0, 'a', ItemID.ethrHoe, 0]);
+Recipes.addShaped({id: ItemID.dreShovel, count: 1, data: 0}, [
+"ax",
+], ['x', ItemID.ethUpgr, 0, 'a', ItemID.ethShovel, 0]);
+});
 
-
-
-
-
-
-
-
-
-
-
+//PortalItems
+IDRegistry.genItemID("keyABW");
+Item.createItem("keyABW", "Geateway Key", {name: "GK"});

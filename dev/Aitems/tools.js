@@ -121,7 +121,70 @@ Recipes.addShaped({id: ItemID.abyssHoe, count: 1, data: 0}, [
    "aa",
     "b",
     "b"
-], ['a', BlockID.abbIron, 0, 'b', 280, 0]);
+], ['a', ItemID.abbIron, 0, 'b', 280, 0]);
+
+//Coralium
+IDRegistry.genItemID("corSword");
+Item.createItem("corSword", "Reinforced Coralium Sword", {name: "RCSW", meta: 0}, {stack: 1});
+
+IDRegistry.genItemID("corShovel");
+Item.createItem("corShovel", "Reinforced Coralium Shovel", {name: "RCS", meta: 0}, {stack: 1});
+
+IDRegistry.genItemID("corPickaxe");
+Item.createItem("corPickaxe", "Reinforced Coralium Pickaxe", {name: "RCP", meta: 0}, {stack: 1});
+
+IDRegistry.genItemID("corAxe");
+Item.createItem("corAxe", "Reinforced Coralium Axe", {name: "RCA", meta: 0}, {stack: 1});
+
+IDRegistry.genItemID("corHoe");
+Item.createItem("corHoe", "Reinforced Coralium Hoe", {name: "RCH", meta: 0}, {stack: 1});
+
+ToolAPI.addToolMaterial("corsw", {durability: 1189, level: 5, efficiency: 4, damage: 10, enchantability: 14});
+ToolAPI.addToolMaterial("corsh", {durability: 1610, level: 5, efficiency: 6, damage: 3, enchantability: 14});
+ToolAPI.addToolMaterial("corpi", {durability: 1506, level: 5, efficiency: 6, damage: 4, enchantability: 14});
+ToolAPI.addToolMaterial("coraxe", {durability: 1598, level: 5, efficiency: 6, damage: 5, enchantability: 14});
+ToolAPI.addToolMaterial("corhoe", {durability: 1597, level: 5, efficiency: 6, damage: 3, enchantability: 14});
+
+ToolAPI.setTool(ItemID.corSword, "corsw", ToolType.sword);
+Item.setToolRender(ItemID.corSword, true);
+ToolAPI.setTool(ItemID.corShovel, "corsh", ToolType.shovel);
+Item.setToolRender(ItemID.corShovel, true);
+ToolAPI.setTool(ItemID.corPickaxe, "corpi", ToolType.pickaxe);
+Item.setToolRender(ItemID.corPickaxe, true);
+ToolAPI.setTool(ItemID.corAxe, "coraxe", ToolType.axe);
+Item.setToolRender(ItemID.corAxe, true);
+ToolAPI.setTool(ItemID.corHoe, "corhoe", ToolType.hoe);
+Item.setToolRender(ItemID.corHoe, true);
+Recipes.addShaped({id: ItemID.corSword, count: 1, data: 0}, [
+    "a",
+    "a",
+    "b"
+], ['a', ItemID.coralIron, 0, 'b', 280, 0]);
+
+Recipes.addShaped({id: ItemID.corShovel, count: 1, data: 0}, [
+    "a",
+    "b",
+    "b"
+], ['a', ItemID.coralIron, 0, 'b', 280, 0]);
+6
+Recipes.addShaped({id: ItemID.corPickaxe, count: 1, data: 0}, [
+    "aaa",
+    " b ",
+    " b "
+], ['a', ItemID.coralIron, 0, 'b', 280, 0]);
+
+Recipes.addShaped({id: ItemID.corAxe, count: 1, data: 0}, [
+    "aa",
+    "ab",
+    " b"
+], ['a', ItemID.coralIron, 0, 'b', 280, 0]);
+
+Recipes.addShaped({id: ItemID.corHoe, count: 1, data: 0}, [
+   "aa",
+    "b",
+    "b"
+], ['a', ItemID.coralIron, 0, 'b', 280, 0]);
+
 //Tier3
 IDRegistry.genItemID("dreSword");
 Item.createItem("dreSword", "Dredalinite Sword", {name: "DDSW", meta: 0}, {stack: 1});
@@ -138,7 +201,7 @@ Item.createItem("dreAxe", "Dredalinite Axe", {name: "DDA", meta: 0}, {stack: 1})
 IDRegistry.genItemID("dreHoe");
 Item.createItem("dreHoe", "Dredalinite Hoe", {name: "DDH", meta: 0}, {stack: 1});
 
-ToolAPI.addToolMaterial("dresw", {durability: 1329, level: 5, efficiency: 4, damage: 9, enchantability: 14});
+ToolAPI.addToolMaterial("dresw", {durability: 1329, level: 5, efficiency: 4, damage: 12, enchantability: 14});
 ToolAPI.addToolMaterial("dresh", {durability: 1762, level: 5, efficiency: 6, damage: 3, enchantability: 14});
 ToolAPI.addToolMaterial("drepi", {durability: 1768, level: 5, efficiency: 6, damage: 4, enchantability: 14});
 ToolAPI.addToolMaterial("dreaxe", {durability: 1762, level: 5, efficiency: 6, damage: 5, enchantability: 14});
@@ -182,4 +245,66 @@ Recipes.addShaped({id: ItemID.dreHoe, count: 1, data: 0}, [
    "aa",
     "b",
     "b"
-], ['a', BlockID.dreadIron, 0, 'b', 280, 0]);
+], ['a', ItemID.dreadIron, 0, 'b', 280, 0]);
+
+//Ethaxium
+IDRegistry.genItemID("ethSword");
+Item.createItem("ethSword", "Dredalinite Sword", {name: "ESW", meta: 0}, {stack: 1});
+
+IDRegistry.genItemID("ethShovel");
+Item.createItem("ethShovel", "Dredalinite Shovel", {name: "ES", meta: 0}, {stack: 1});
+
+IDRegistry.genItemID("ethPickaxe");
+Item.createItem("ethPickaxe", "Dredalinite Pickaxe", {name: "EP", meta: 0}, {stack: 1});
+
+IDRegistry.genItemID("ethAxe");
+Item.createItem("ethAxe", "Dredalinite Axe", {name: "EA", meta: 0}, {stack: 1});
+
+IDRegistry.genItemID("ethHoe");
+Item.createItem("ethHoe", "Dredalinite Hoe", {name: "EH", meta: 0}, {stack: 1});
+
+ToolAPI.addToolMaterial("ethsw", {durability: 1929, level: 6, efficiency: 5, damage: 15, enchantability: 14});
+ToolAPI.addToolMaterial("ethsh", {durability: 2162, level: 6, efficiency: 7, damage: 4, enchantability: 14});
+ToolAPI.addToolMaterial("ethpi", {durability: 2168, level: 6, efficiency: 7, damage: 4, enchantability: 14});
+ToolAPI.addToolMaterial("ethaxe", {durability: 2162, level: 6, efficiency: 7, damage: 6, enchantability: 14});
+ToolAPI.addToolMaterial("ethhoe", {durability: 2162, level: 6, efficiency: 7, damage: 3, enchantability: 14});
+
+ToolAPI.setTool(ItemID.ethSword, "ethsw", ToolType.sword);
+Item.setToolRender(ItemID.ethSword, true);
+ToolAPI.setTool(ItemID.ethShovel, "ethsh", ToolType.shovel);
+Item.setToolRender(ItemID.ethShovel, true);
+ToolAPI.setTool(ItemID.ethPickaxe, "ethpi", ToolType.pickaxe);
+Item.setToolRender(ItemID.ethPickaxe, true);
+ToolAPI.setTool(ItemID.ethAxe, "ethaxe", ToolType.axe);
+Item.setToolRender(ItemID.ethAxe, true);
+ToolAPI.setTool(ItemID.ethHoe, "ethhoe", ToolType.hoe);
+Item.setToolRender(ItemID.ethHoe, true);
+Recipes.addShaped({id: ItemID.ethSword, count: 1, data: 0}, [
+    "a",
+    "a",
+    "b"
+], ['a', ItemID.ethIron, 0, 'b', ItemID.ethBrick, 0]);
+
+Recipes.addShaped({id: ItemID.ethShovel, count: 1, data: 0}, [
+    "a",
+    "b",
+    "b"
+], ['a', ItemID.ethIron, 0, 'b', ItemID.ethBrick, 0]);
+6
+Recipes.addShaped({id: ItemID.ethPickaxe, count: 1, data: 0}, [
+    "aaa",
+    " b ",
+    " b "
+], ['a', ItemID.ethIron, 0, 'b', ItemID.ethBrick, 0]);
+
+Recipes.addShaped({id: ItemID.ethAxe, count: 1, data: 0}, [
+    "aa",
+    "ab",
+    " b"
+], ['a', ItemID.ethIron, 0, 'b', ItemID.ethBrick, 0]);
+
+Recipes.addShaped({id: ItemID.ethHoe, count: 1, data: 0}, [
+   "aa",
+    "b",
+    "b"
+], ['a', ItemID.ethIron, 0, 'b', ItemID.ethBrick, 0]);
