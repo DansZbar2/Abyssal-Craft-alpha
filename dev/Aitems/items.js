@@ -252,3 +252,10 @@ Recipes.addShaped({id: ItemID.dreShovel, count: 1, data: 0}, [
 //PortalItems
 IDRegistry.genItemID("keyABW");
 Item.createItem("keyABW", "Geateway Key", {name: "GK"});
+
+Recipes.addShaped({id: BlockID.stoneDarkL, count: 4, data: 0}, [
+"oxo",
+"xsx",
+"oxo"
+], ['x', BlockID.stoneDark, 0,'s', ItemID.coralPearl, 0]);
+

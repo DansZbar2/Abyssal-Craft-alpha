@@ -18,6 +18,12 @@ Block.createBlock("oreNitre", [
 {name: "Nitre Ore", texture:[["CIS", 0]],inCreative: true}],BLOCK_TYPE_ORE);
 Block.setDestroyLevel("oreNitre", 4);
 
+Recipes.addShaped({id: BlockID.oreCoralInfused, count: 1, data: 0}, [
+"xxx",
+"aaa",
+"xxx"
+], ['a', ItemID.coralGem, 0,'x', 1, 0]);
+
 Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){ 
 UniGen.generateOre(BlockID.stoneDark, 0, AbyssalWastelands, chunkX, chunkZ, { 
 veinCounts: 4, 
@@ -38,7 +44,7 @@ veinCounts: 3,
 veinChance: 20, 
 minY: 12, 
 maxY: 48,  
-size: randomInt(1, 3),  
+size: randomInt(1, 5),  
 ratio: .5, 
 checkerTile: 1, 
 checkerMode: true
@@ -66,7 +72,7 @@ veinCounts: 3,
 veinChance: 32, 
 minY: 4, 
 maxY: 27,  
-size: randomInt(1, 4),  
+size: randomInt(1, 3),  
 ratio: .5, 
 checkerTile: 1, 
 checkerMode: true
@@ -76,11 +82,11 @@ checkerMode: true
 
 Callback.addCallback("GenerateChunk", function(chunkX, chunkZ){ 
 UniGen.generateOre(BlockID.oreCoralInfused, 0, AbyssalWastelands, chunkX, chunkZ, { 
-veinCounts: 2, 
-veinChance: 42, 
+veinCounts: 3, 
+veinChance: 30, 
 minY: 4, 
 maxY: 30,  
-size: randomInt(1, 2),  
+size: 1,  
 ratio: .5, 
 checkerTile: 1, 
 checkerMode: true
@@ -261,6 +267,7 @@ Recipes.addFurnace(BlockID.oreNitre, ItemID.nitrePeace, 0);
 Recipes.addFurnace(BlockID.oreAiron, 265, 0);
 Recipes.addFurnace(BlockID.oreAgold, 266, 0);
 Recipes.addFurnace(BlockID.oreDAbyss, ItemID.abbIron, 0);
+Recipes.addFurnace(BlockID.oreAdiamond, 264, 0);
 
 
 Block.registerDropFunction("oreAdiamond", function(coords, blockID, blockData, level, enchant){
@@ -275,5 +282,5 @@ Block.registerDropFunction("oreAdiamond", function(coords, blockID, blockData, l
     }
     return [];
 });
-Recipes.addFurnace(BlockID.oreAdiamond, 264, 0);
+Recipes.addFurnace(BlockID.sandAbyss, BlockID.glassAbyssal, 0);
 });

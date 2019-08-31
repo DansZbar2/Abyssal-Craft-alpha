@@ -3,7 +3,7 @@ AE:[],
 IEt:[],    
 addEffectToArmor:function(params){
 Callback.addCallback("tick", function(){    
-if(Entity.getArmorSlot(params.entity, params.slot).id == params.id){
+if(Entity.getArmorSlot(params.entity, params.slot).id == params.Aid){
 Entity.addEffect(params.entity, params.effectID, params.effectTime, params.powerLVL, false, false);   
   }
 });
@@ -38,8 +38,8 @@ setArmorToEntity:function(){
 Callback.addCallback("EntityAdded", function(entity){
 var AE = this.AE;
 for(var i = 0; i < AE.length; i++){
-if(entity == AE.entity){
-Entity.setArmorSlot(entity, AE.slot, AE.id, 1, AE.data);    
+if(entity == AE[i].entity){
+Entity.setArmorSlot(AE[i].entity, AE[i].slot, AE[i].id, 1, AE[i].data);    
           }
         }
     });
@@ -48,8 +48,8 @@ setItemsToEntity:function(){
 Callback.addCallback("EntityAdded", function(entity){
 var IEt = this.IEt;
 for(var i = 0; i < IEt.length; i++){
-if(entity == IEt.entity){
-Entity.setCarriedItem(IEt.entity, IEt.id, IEt.count, IEt.data);    
+if(entity == IEt[i].entity){
+Entity.setCarriedItem(IEt[i].entity, IEt[i].id, IEt[i].count, IEt[i].data);    
           }
         }
     });

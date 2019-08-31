@@ -6,6 +6,27 @@ var BLOCK_TYPE_STONE = Block.createSpecialType({
     opaque: true
 }, "stone");
 
+var BLOCK_TYPE_LIGHT = Block.createSpecialType({
+     base: 1,
+     lightlevel: 6, 
+}, "stone");
+
+
+var BLOCK_TYPE_GRASS = Block.createSpecialType({
+    base: 2,
+    solid: true,
+    destroytime: 2,
+    explosionres: 0,
+    opaque: true
+}, "dirt");
+
+var BLOCK_TYPE_GLASS = Block.createSpecialType({
+    lightopacity: 1,
+    destroytime: 1,
+    opaque: false,
+    renderlayer: 2
+});
+
 var BLOCK_TYPE_ORE = Block.createSpecialType({
     base: 1,
     solid: true,
@@ -22,15 +43,31 @@ var BLOCK_TYPE_UNI = Block.createSpecialType({
     opaque: true
 }, "stone");
 
+IDRegistry.genBlockID("grassDark");
+Block.createBlockWithRotation("grassDark", [
+{name: "DarkLends Grass", texture: [["DLGbottom", 0], ["DLGtop", 0], ["DLGsides", 0]], inCreative: true}], BLOCK_TYPE_GRASS);
+ToolAPI.registerBlockMaterial(BlockID.grassDark, "dirt", 0, true);
 
 IDRegistry.genBlockID("stoneDark"); 
 Block.createBlock("stoneDark", [
 {name: "Dark Stone", texture: [["DS", 0]],inCreative: true}], BLOCK_TYPE_STONE);
 
-IDRegistry.genBlockID("dirtDark");
-Block.createBlockWithRotation("dirtDark", [
-{name: "DarkLends Dirt", texture: [["DLGbottom", 0], ["DLGtop", 0], ["DLGsides", 0], ["DLGsides", 0], ["DLGsides", 0], ["DLGsides", 0]], inCreative: true}], "opaque");
-ToolAPI.registerBlockMaterial(BlockID.dirtDark, "dirt", 0, true);
+IDRegistry.genBlockID("stoneDABri"); 
+Block.createBlock("stoneDABri", [
+{name: "Dark Bricks", texture: [["DSB", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+Recipes.addFurnace(BlockID.stoneDark, BlockID.stoneDABri, 0);
+
+IDRegistry.genBlockID("stoneDABrik"); 
+Block.createBlock("stoneDABrik", [
+{name: "Dark Bricks", texture: [["DSBf", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+Recipes.addShaped({id: BlockID.stoneDABrik, count: 4, data: 0}, [
+"xx",
+"xx",
+], ['x', BlockID.stoneDark, 0]);
+
+IDRegistry.genBlockID("stoneDarkL"); 
+Block.createBlock("stoneDarkL", [
+{name: "Dark Stone Beacon", texture: [["DSsTop", 0], ["DSsTop", 0], ["DSGlow", 0]],inCreative: true}], BLOCK_TYPE_LIGHT);
 
 //ingots blocks
 IDRegistry.genBlockID("blockAbyssalinite"); 
@@ -49,6 +86,19 @@ IDRegistry.genBlockID("blockEthaxium");
 Block.createBlock("blockEthaxium", [
 {name: "Block of Ethaxium", texture: [["BOE", 0]],inCreative: true}], BLOCK_TYPE_UNI);
 
+IDRegistry.genBlockID("grassAbyss");
+Block.createBlock("grassAbyss", [
+    {name: "Abyssal Wastlands Grass", texture: [["abyssalsand", 0], ["fusedabyssalsand", 0], ["fusedabyssalsand_side", 0]],inCreative: true}], BLOCK_TYPE_GRASS);
+ToolAPI.registerBlockMaterial(BlockID.grassAbyss, "dirt", 0, true);
+
+IDRegistry.genBlockID("sandAbyss");
+Block.createBlockWithRotation("sandAbyss", [
+{name: "Dreaded Wastlands Sand", texture: [["DLGbottom", 0], ["DrGtop", 0], ["DrGsides", 0]], inCreative: true}], BLOCK_TYPE_GRASS);
+ToolAPI.registerBlockMaterial(BlockID.sandAbyss, "dirt", 0, true);
+
+IDRegistry.genBlockID("glassAbyssal"); 
+Block.createBlock("glassAbyssal", [
+{name: "Abyssal Waste Glass", texture: [["abyssalsandglass_0", 0]],inCreative: true}], BLOCK_TYPE_GLASS);
 
 IDRegistry.genBlockID("stoneAbyssal"); 
 Block.createBlock("stoneAbyssal", [
@@ -67,10 +117,10 @@ Recipes.addShaped({id: BlockID.stoneABrik, count: 4, data: 0}, [
 "xx",
 ], ['x', BlockID.stoneAbyssal, 0]);
 
-IDRegistry.genBlockID("dirtDread");
-Block.createBlockWithRotation("dirtDread", [
-{name: "DarkLends Dirt", texture: [["DLGbottom", 0], ["DrGtop", 0], ["DrGsides", 0], ["DrGsides", 0], ["DrGsides", 0], ["DrGsides", 0]], inCreative: true}], "opaque");
-ToolAPI.registerBlockMaterial(BlockID.dirtDark, "dirt", 0, true);
+IDRegistry.genBlockID("grassDread");
+Block.createBlockWithRotation("grassDread", [
+{name: "Dreaded Wastlands Grass", texture: [["DLGbottom", 0], ["DrGtop", 0], ["DrGsides", 0]], inCreative: true}], BLOCK_TYPE_GRASS);
+ToolAPI.registerBlockMaterial(BlockID.grassDread, "dirt", 0, true);
 
 IDRegistry.genBlockID("stoneDread"); 
 Block.createBlock("stoneDread", [
@@ -106,7 +156,7 @@ Recipes.addFurnace(BlockID.Etx, BlockID.stoneEtxB, 0);
 
 IDRegistry.genBlockID("stoneEtxP"); 
 Block.createBlock("stoneEtxP", [
-{name: "Ethaxium Pillar", texture: [["EBP_top", 0], ["EBP_top", 0], ["EBP", 0], ["EBP", 0], ["EBP", 0], ["EBP", 0]],inCreative: true}], BLOCK_TYPE_STONE);
+{name: "Ethaxium Pillar", texture: [["EBP_top", 0], ["EBP_top", 0], ["EBP", 0]],inCreative: true}], BLOCK_TYPE_STONE);
 Recipes.addShaped({id: BlockID.stoneEtxP, count: 1, data: 0}, [
 "x",
 ], ['x', BlockID.stoneEtxb, 0]);

@@ -1,5 +1,7 @@
 header.js
 api/armorStuff.js
+api/NecroPE.js
+api/DarkSacrafices.js
 Ablocks/terrain.js
 Adimensions/Abys.js
 Ablocks/ores.js
@@ -8,6 +10,8 @@ Aitems/items.js
 Aitems/food.js
 Aitems/tools.js
 Aitems/armor.js
+Aitems/necronomicons.js
+Ablocks/altar&pillars/altar.js
 Amobs/humanoidal.js
 Amobs/unpeasful.js
 Amobs/anti.js

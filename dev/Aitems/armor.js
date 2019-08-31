@@ -13,7 +13,7 @@ Item.createArmorItem("ABBoot", "Abyssalnite boots", {name: "AAB"}, {type: "boots
 
 //effects:Speed I, Water Breathing I
 var spdfabb = new EntitysSS.addEffectToArmor({
-id:ItemID.ABBoot,    
+Aid:ItemID.ABBoot,    
 entity:Player.get(),
 slot:3,
 effectID:1,
@@ -21,7 +21,7 @@ effectTime:200,
 powerLVL:0
 });
 var wtbfabb = new EntitysSS.addEffectToArmor({
-id:ItemID.ABHelm,    
+Aid:ItemID.ABHelm,    
 entity:Player.get(),
 slot:0,
 effectID:13,
@@ -43,7 +43,7 @@ Item.createArmorItem("DABBoot", "Dreaded Abyssalnite boots", {name: "ADAB"}, {ty
 
 //effects:Night Vision I, Fire Resistance IV 
 var rstfdre = new EntitysSS.addEffectToArmor({
-id:ItemID.DABCh,    
+Aid:ItemID.DABCh,    
 entity:Player.get(),
 slot:1,
 effectID:12,
@@ -51,7 +51,7 @@ effectTime:200,
 powerLVL:0
 });
 var ngvfdre = new EntitysSS.addEffectToArmor({
-id:ItemID.DABHelm,    
+Aid:ItemID.DABHelm,    
 entity:Player.get(),
 slot:0,
 effectID:16,
@@ -73,7 +73,7 @@ Item.createArmorItem("RCBoot", "Refined Coralium boots", {name: "ACB"}, {type: "
 
 //effects:, Speed II, Water Breathing I
 var spdfrc = new EntitysSS.addEffectToArmor({
-id:ItemID.RCBoot,    
+Aid:ItemID.RCBoot,    
 entity:Player.get(),
 slot:3,
 effectID:1,
@@ -81,7 +81,7 @@ effectTime:200,
 powerLVL:1
 });
 var wtbfrc = new EntitysSS.addEffectToArmor({
-id:ItemID.RCHelm,    
+Aid:ItemID.RCHelm,    
 entity:Player.get(),
 slot:0,
 effectID:13,
@@ -104,7 +104,7 @@ Item.createArmorItem("PRCBoot", "Plated Coralium boots", {name: "ACBP"}, {type: 
 
 //effects: Night Vision I, Speed II, Water Breathing II
 var spdfrcp = new EntitysSS.addEffectToArmor({
-id:ItemID.PRCBoot,    
+Aid:ItemID.PRCBoot,    
 entity:Player.get(),
 slot:3,
 effectID:1,
@@ -112,7 +112,7 @@ effectTime:200,
 powerLVL:1
 });
 var ngvfrcp = new EntitysSS.addEffectToArmor({
-id:ItemID.PRCHelm,    
+Aid:ItemID.PRCHelm,    
 entity:Player.get(),
 slot:0,
 effectID:16,
@@ -120,7 +120,7 @@ effectTime:200,
 powerLVL:0
 });
 var wtbfrcp = new EntitysSS.addEffectToArmor({
-id:ItemID.PRCHelm,    
+Aid:ItemID.PRCHelm,    
 entity:Player.get(),
 slot:0,
 effectID:13,
@@ -142,7 +142,7 @@ Item.createArmorItem("DPBoot", "Depths boots", {name: "ADB"}, {type: "boots", ar
 
 //effects: Night Vision II, Speed III, Water Breathing II, Jump Boost II
 var spdfdp = new EntitysSS.addEffectToArmor({
-id:ItemID.DPBoot,    
+Aid:ItemID.DPBoot,    
 entity:Player.get(),
 slot:3,
 effectID:1,
@@ -150,7 +150,7 @@ effectTime:200,
 powerLVL:2
 });
 var jpbfdp = new EntitysSS.addEffectToArmor({
-id:ItemID.DPLeg,    
+Aid:ItemID.DPLeg,    
 entity:Player.get(),
 slot:2,
 effectID:8,
@@ -158,7 +158,7 @@ effectTime:200,
 powerLVL:1
 });
 var ngvfdp = new EntitysSS.addEffectToArmor({
-id:ItemID.DPHelm,    
+Aid:ItemID.DPHelm,    
 entity:Player.get(),
 slot:0,
 effectID:16,
@@ -166,7 +166,7 @@ effectTime:200,
 powerLVL:1
 });
 var wtbfdp = EntitysSS.addEffectToArmor({
-id:ItemID.DPHelm,    
+Aid:ItemID.DPHelm,    
 entity:Player.get(),
 slot:0,
 effectID:13,
@@ -188,7 +188,7 @@ Item.createArmorItem("DADBoot", "Dredalinite boots", {name: "ADDB"}, {type: "boo
 
 //EFFECTS: Resistance III, Speed III
 var spdfdad = new EntitysSS.addEffectToArmor({
-id:ItemID.DADBoot,    
+Aid:ItemID.DADBoot,    
 entity:Player.get(),
 slot:3,
 effectID:1,
@@ -196,7 +196,7 @@ effectTime:200,
 powerLVL:2
 });
 var resfdad = new EntitysSS.addEffectToArmor({
-id:ItemID.DADCh,    
+Aid:ItemID.DADCh,    
 entity:Player.get(),
 slot:1,
 effectID:11,
@@ -219,7 +219,7 @@ Item.createArmorItem("DADSBoot", "Dreadium Samurai boots", {name: "ADSB"}, {type
 
 //EFFECTS: Resistance 4, Speed III, Fire Resistance II, Strength II
 var srtgfdads = new EntitysSS.addEffectToArmor({
-id:ItemID.DADSHelm,    
+Aid:ItemID.DADSHelm,    
 entity:Player.get(),
 slot:3,
 effectID:5,
@@ -227,7 +227,7 @@ effectTime:200,
 powerLVL:1
 });
 var spdfdads = new EntitysSS.addEffectToArmor({
-id:ItemID.DADSBoot,    
+Aid:ItemID.DADSBoot,    
 entity:Player.get(),
 slot:3,
 effectID:1,
@@ -235,7 +235,7 @@ effectTime:200,
 powerLVL:2
 });
 var resfdads = new EntitysSS.addEffectToArmor({
-id:ItemID.DADSCh,    
+Aid:ItemID.DADSCh,    
 entity:Player.get(),
 slot:1,
 effectID:11,
@@ -243,7 +243,7 @@ effectTime:200,
 powerLVL:3
 });
 var fresfdads = new EntitysSS.addEffectToArmor({
-id:ItemID.DADSLeg,    
+Aid:ItemID.DADSLeg,    
 entity:Player.get(),
 slot:3,
 effectID:12,
@@ -266,7 +266,7 @@ Item.createArmorItem("AEBoot", "Ethaxium boots", {name: "AEB"}, {type: "boots", 
 
 //EFFECTS: Resistance 5, Speed III, Fire Resistance II, Strength II
 var srtgfdads = new EntitysSS.addEffectToArmor({
-id:ItemID.AEHelm,    
+Aid:ItemID.AEHelm,    
 entity:Player.get(),
 slot:3,
 effectID:5,
@@ -274,7 +274,7 @@ effectTime:200,
 powerLVL:1
 });
 var spdfdads = new EntitysSS.addEffectToArmor({
-id:ItemID.AEBoot,    
+Aid:ItemID.AEBoot,    
 entity:Player.get(),
 slot:3,
 effectID:1,
@@ -282,7 +282,7 @@ effectTime:200,
 powerLVL:2
 });
 var resfdads = new EntitysSS.addEffectToArmor({
-id:ItemID.AECh,    
+Aid:ItemID.AECh,    
 entity:Player.get(),
 slot:1,
 effectID:11,
@@ -290,7 +290,7 @@ effectTime:200,
 powerLVL:4
 });
 var fresfdads = new EntitysSS.addEffectToArmor({
-id:ItemID.AELeg,    
+Aid:ItemID.AELeg,    
 entity:Player.get(),
 slot:3,
 effectID:12,
