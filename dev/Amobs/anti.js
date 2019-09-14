@@ -73,7 +73,7 @@ var Anti_Zombie = new Mob({
     spawn:{
     chance:4.25,      
     biomes:-1,   
-    time:[{start:0,end:23999}]},  
+    time:NIGHT},  
     loot:[{id:ItemID.anFl,count:{min:1,max:3}, chance:100}],
     ai:32
 });
@@ -93,7 +93,7 @@ var Anti_Zombie_Abyssal = new Mob({
     spawn:{
     chance:3.25,      
     biomes:-1,   
-    time:[{start:0,end:23999}]},  
+    time:NIGHT},  
     loot:[{id:ItemID.anCb,count:{min:1,max:3}, chance:100},{id:ItemID.anCF,count:{min:1,max:2}, chance:25}],
     ai:32
 });
@@ -113,7 +113,7 @@ var Anti_Skeleton = new Mob({
     spawn:{
     chance:3.25,      
     biomes:-1,   
-    time:[{start:0,end:23999}]},  
+    time:NIGHT},  
     loot:[{id:ItemID.anBo,count:{min:1,max:3}, chance:100}],
     ai:34
 });
@@ -133,7 +133,7 @@ var Anti_Creeper = new Mob({
     spawn:{
     chance:3.25,      
     biomes:-1,   
-    time:[{start:0,end:23999}]},  
+    time:NIGHT},  
     loot:[{id:ItemID.anBo,count:{min:1,max:3}, chance:100}],
     ai:33
 });
@@ -153,7 +153,7 @@ var Anti_Spider = new Mob({
     spawn:{
     chance:3.25,      
     biomes:-1,   
-    time:[{start:0,end:23999}]},  
+    time:NIGHT},  
     loot:[{id:ItemID.anBo,count:{min:1,max:3}, chance:100}],
     ai:35
 });
@@ -173,7 +173,7 @@ var Anti_Bat  = new Mob({
     spawn:{
     chance:3.25,      
     biomes:-1,   
-    time:[{start:0,end:23999}]},  
+    time:NIGHT},  
     loot:[{id:ItemID.anBo,count:{min:1,max:3}, chance:100}],
     ai:19
 });

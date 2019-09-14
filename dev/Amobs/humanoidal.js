@@ -1,3 +1,4 @@
+var NIGHT = [{start:12000, end:23999}];
 //ZOMBIFICATED
 var Zombie_Abyssal = new Mob({
     sid:"Zombie_Abyssal",
@@ -12,7 +13,7 @@ var Zombie_Abyssal = new Mob({
     spawn:{
     chance:2.25,      
     biomes:-1,   
-    time:[{start:0,end:23999}]},  
+    time:NIGHT},  
     loot:[367],
     ai:32
 });
@@ -32,7 +33,7 @@ var Zombie_Abyssal_End = new Mob({
     spawn:{
     chance:2.26,      
     biomes:9,   
-    time:[{start:0,end:23999}]},
+    time:NIGHT},
     loot:[367],
     ai:38
 });
@@ -53,7 +54,7 @@ var Golem_Abyssal = new Mob({
     spawn:{
     chance:2.25,      
     biomes:9,   
-    time:[{start:0,end:23999}]},
+    time:NIGHT},
     loot:[{id:ItemID.abbChunck,count:{min:1 , max:3}, chance:1}],
     ai:48,
     equipments:[{item:ItemID.abyssSword, chance:100}]
@@ -74,7 +75,7 @@ var Golem_Dreaded = new Mob({
     spawn:{
     chance:1.25,      
     biomes:9,   
-    time:[{start:0,end:23999}]},
+    time:NIGHT},
     loot:[{id:ItemID.dreadChunck,count:{min:1 , max:3}, chance:100}],
     ai:48,
     equipments:[{item:ItemID.abyssSword, chance:100}]
@@ -95,7 +96,7 @@ var Dreadling = new Mob({
     spawn:{
     chance:1.2,      
     biomes:9,   
-    time:[{start:0,end:23999}]},
+    time:NIGHT},
     loot:[{id:ItemID.dreadChunck,count:{min:1 , max:3}, chance:100},{id:ItemID.dreadPeace,count:{min:1 , max:5}, chance:50}], 
     ai:48,
     equipments:[{item:ItemID.dreSword, chance:100}]

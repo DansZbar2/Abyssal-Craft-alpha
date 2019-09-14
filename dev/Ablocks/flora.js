@@ -73,7 +73,7 @@ function darkTree(x,y,z){
 }
 
 Item.registerUseFunction("darkSapling",function(coords, item, block){
-coords = coords.relative();
+var coords = coords.relative;
     if(World.getBlockID(coords.x,coords.y-1,coords.z)==BlockID.dirtDark){
         World.setBlock(coords.x,coords.y,coords.z,BlockID.darkSapling,0);
         Player.setCarriedItem(item.id, item.count - 1, item.data);
@@ -81,15 +81,15 @@ coords = coords.relative();
 });
 
 Item.registerUseFunctionForID({id:351,data:15},function(coords, item, block){
-coords = coords.relative();
-    if(World.getBlockID(coords.x,coords.y-1,coords.z)==BlockID.darkSapling){  
-        darkTree(coords.x,coords.y,coords.z);
+var coordds = coords.relative;
+    if(World.getBlockID(coords.x,coordds.y-1,coordds.z)==BlockID.darkSapling){  
+        darkTree(coordds.x,coordds.y,coordds.z);
         Player.setCarriedItem(item.id, item.count - 1, item.data);
     }
 });
 
-Callback.addCallback("ItemUse",function(crd,item){
-crd = coords.relative();
+Callback.addCallback("ItemUse",function(coords,item){
+var crd = coords.relative;
 if(World.getBlock(crd.x,crd.y,crd.z).id == BlockID.darkSapling){
 if(item.id == 351 && item.data == 15){    
 World.destroyBlock(crd.x, crd.y, crd.z, false);
@@ -99,7 +99,8 @@ Player.setCarriedItem(id, count - 1, data);
 }
 });
 
-Block.setRandomTickCallback(BlockID.darkSapling, function(x, y, z, id, data){    
+Block.setRandomTickCallback(BlockID.darkSapling, function(x, y, z, id, data){       
+var coords = coords.relative;
 if(World.getBlockID(coords.x, coords.y - 1, coords.z)==BlockID.dirtDark){
 World.destroyBlock(coords.x,coords.y,coords.z,false);                      
 darkTree(coords.x,coords.y,coords.z);
@@ -137,14 +138,14 @@ Block.registerDropFunction("dreadLeaves", function(){
 ToolAPI.registerBlockMaterial(BlockID.dreadLeaves, "plant");
 
 IDRegistry.genBlockID("dreadSapling");
-Block.createBlock("dreadSapling", [{name: "Dread Tree Sapling", texture: [["DLTS", 0]], inCreative: false}]);
+Block.createBlock("dreadSapling", [{name: "Dread Tree Sapling", texture: [["DrTS", 0]], inCreative: false}]);
 Block.setBlockShape(BlockID.dreadSapling, {x: 0.001, y: 0.001, z: 0.001}, {x: 0.999, y: 0.002, z: 0.999});
 Block.registerDropFunction("dreadSapling", function(){
     return [[ItemID.dreadSapling, 1, 0]];
 });
 
 IDRegistry.genItemID("dreadSapling");
-Item.createItem("dreadSapling", "Dread Tree Sapling", {name: "DLTS", data: 1});
+Item.createItem("dreadSapling", "Dread Tree Sapling", {name: "DSTS", data: 1});
 
 BlockRenderer.addRenderCallback(BlockID.dreadSapling, function(api, coords, block) {
 var box = BlockID.dreadSapling;
@@ -178,23 +179,23 @@ function dreadTree(x,y,z){
 }
 
 Item.registerUseFunction("dreadSapling",function(coords, item, block){
-coords = coords.relative();
-    if(World.getBlockID(coords.x,coords.y-1,coords.z)==BlockID.dirtDread){  
-        World.setBlock(coords.x,coords.y,coords.z,BlockID.dreadSapling,0);
+var coordss = coords.relative;
+    if(World.getBlockID(coordss.x,coordss.y-1,coordss.z)==BlockID.dirtDread){  
+        World.setBlock(coordss.x,coordss.y,coordss.z,BlockID.dreadSapling,0);
         Player.setCarriedItem(item.id, item.count - 1, item.data);
     }
 });
 
 Item.registerUseFunctionForID({id:351,data:15},function(coords, item, block){
-coords = coords.relative();
-    if(World.getBlockID(coords.x,coords.y-1,coords.z)==BlockID.dreadSapling){  
+var coords = coords.relative; if(World.getBlockID(coords.x,coords.y-1,coords.z)==BlockID.dreadSapling){  
         dreadTree(coords.x,coords.y,coords.z);
         Player.setCarriedItem(item.id, item.count - 1, item.data);
     }
 });
 
 
-Block.setRandomTickCallback(BlockID.dreadSapling, function(x, y, z, id, data){    
+Block.setRandomTickCallback(BlockID.dreadSapling, function(x, y, z, id, data){
+var coords = coords.relative;       
 if(World.getBlockID(coords.x, coords.y - 1, coords.z)==BlockID.dirtDread){
 World.destroyBlock(coords.x,coords.y,coords.z,false);                      
 dreadTree(coords.x,coords.y,coords.z);
@@ -231,6 +232,14 @@ Block.registerDropFunction("plantWaste", function(){
 IDRegistry.genItemID("plantWaste");
 Item.createItem("plantWaste", "Wastalands Horn", {name: "wastelandsthorn", data: 1});
 
+Item.registerUseFunction("plantWaste",function(coords, item, block){
+var coordss = coords.relative;
+    if(World.getBlockID(coordss.x,coordss.y-1,coordss.z)==BlockID.grassAbyss){  
+        World.setBlock(coordss.x,coordss.y,coordss.z,BlockID.plantWaste,0);
+        Player.setCarriedItem(item.id, item.count - 1, item.data);
+    }
+});
+
 IDRegistry.genBlockID("plantWasteL");
 Block.createBlock("plantWasteL", [{name: "Wastalands Lumin", texture: [["luminousthistle", 0]], inCreative: false}]);
 Block.setBlockShape(BlockID.plantWasteL, {x: 0.001, y: 0.001, z: 0.001}, {x: 0.999, y: 0.002, z: 0.999});
@@ -238,5 +247,13 @@ Block.registerDropFunction("plantWasteL", function(){
     return [[ItemID.plantWasteL, 1, 0]];
 });
 
-IDRegistry.genItemID("plantWaste");
-Item.createItem("plantWaste", "Wastalands Lumin", {name: "luminousthistle", data: 1});
+IDRegistry.genItemID("plantWasteL");
+Item.createItem("plantWasteL", "Wastalands Lumin", {name: "luminousthistle", data: 1});
+
+Item.registerUseFunction("plantWasteL",function(coords, item, block){
+var coordss = coords.relative;
+    if(World.getBlockID(coordss.x,coordss.y-1,coordss.z)==BlockID.grassAbyss){  
+        World.setBlock(coordss.x,coordss.y,coordss.z,BlockID.plantWasteL,0);
+        Player.setCarriedItem(item.id, item.count - 1, item.data);
+    }
+});

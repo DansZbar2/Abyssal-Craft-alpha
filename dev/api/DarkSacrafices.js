@@ -36,8 +36,8 @@ var SacrificesApi = {
          });
     }, 
     regRecipe:function(result,params){
-     recipes.push(params);
-     results.push(result);
+     this.recipes.push(params);
+     this.results.push(result);
    }
 };
 

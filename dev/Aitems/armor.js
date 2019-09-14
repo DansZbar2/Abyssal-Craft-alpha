@@ -253,16 +253,16 @@ powerLVL:1
 
 //Ethaxium
 IDRegistry.genItemID("AEHelm");
-Item.createArmorItem("AEHelm", "Ethaxium helmet", {name: "AEH"}, {type: "helmet", armor: 9, durability: 2889, texture: "armor/dreadiumS_1.png", isTech:false});
+Item.createArmorItem("AEHelm", "Ethaxium helmet", {name: "AEH"}, {type: "helmet", armor: 9, durability: 2889, texture: "armor/ethaxium_1.png", isTech:false});
 
 IDRegistry.genItemID("AECh");
-Item.createArmorItem("AECh", "Ethaxium chestplate", {name: "AEC"}, {type: "chestplate", armor: 14, durability: 3090, texture: "armor/dreadiumS_1.png", isTech:false});
+Item.createArmorItem("AECh", "Ethaxium chestplate", {name: "AEC"}, {type: "chestplate", armor: 14, durability: 3090, texture: "armor/ethaxium_1.png", isTech:false});
 
 IDRegistry.genItemID("AELeg");
-Item.createArmorItem("AELeg", "Ethaxium leggins", {name: "AEP"}, {type: "leggings", armor: 10, durability:2516, texture: "armor/dreadiumS_2.png", isTech:false});
+Item.createArmorItem("AELeg", "Ethaxium leggins", {name: "AEP"}, {type: "leggings", armor: 10, durability:2516, texture: "armor/ethaxium_2.png", isTech:false});
 
 IDRegistry.genItemID("AEBoot");
-Item.createArmorItem("AEBoot", "Ethaxium boots", {name: "AEB"}, {type: "boots", armor: 7, durability: 2714, texture: "armor/dreadiumS_1.png", isTech:false});
+Item.createArmorItem("AEBoot", "Ethaxium boots", {name: "AEB"}, {type: "boots", armor: 7, durability: 2714, texture: "armor/ethaxium_1.png", isTech:false});
 
 //EFFECTS: Resistance 5, Speed III, Fire Resistance II, Strength II
 var srtgfdads = new EntitysSS.addEffectToArmor({

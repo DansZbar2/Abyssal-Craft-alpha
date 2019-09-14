@@ -15,7 +15,7 @@ Block.setDestroyLevel("oreCoral", 3);
 
 IDRegistry.genBlockID("oreNitre"); 
 Block.createBlock("oreNitre", [
-{name: "Nitre Ore", texture:[["CIS", 0]],inCreative: true}],BLOCK_TYPE_ORE);
+{name: "Nitre Ore", texture:[["NO", 0]],inCreative: true}],BLOCK_TYPE_ORE);
 Block.setDestroyLevel("oreNitre", 4);
 
 Recipes.addShaped({id: BlockID.oreCoralInfused, count: 1, data: 0}, [

@@ -44,8 +44,8 @@ var BLOCK_TYPE_UNI = Block.createSpecialType({
 }, "stone");
 
 IDRegistry.genBlockID("grassDark");
-Block.createBlockWithRotation("grassDark", [
-{name: "DarkLends Grass", texture: [["DLGbottom", 0], ["DLGtop", 0], ["DLGsides", 0]], inCreative: true}], BLOCK_TYPE_GRASS);
+Block.createBlock("grassDark", [
+{name: "DarkLends Grass", texture: [["DLGbottom", 0], ["DLGtop", 0], ["DLGSides", 1]], inCreative: true}], BLOCK_TYPE_GRASS);
 ToolAPI.registerBlockMaterial(BlockID.grassDark, "dirt", 0, true);
 
 IDRegistry.genBlockID("stoneDark"); 
@@ -92,13 +92,13 @@ Block.createBlock("grassAbyss", [
 ToolAPI.registerBlockMaterial(BlockID.grassAbyss, "dirt", 0, true);
 
 IDRegistry.genBlockID("sandAbyss");
-Block.createBlockWithRotation("sandAbyss", [
-{name: "Dreaded Wastlands Sand", texture: [["DLGbottom", 0], ["DrGtop", 0], ["DrGsides", 0]], inCreative: true}], BLOCK_TYPE_GRASS);
+Block.createBlock("sandAbyss",[
+{name: "Abyssal Wastlands Sand", texture: [["abyssalsand", 0]], inCreative: true}], BLOCK_TYPE_GRASS);
 ToolAPI.registerBlockMaterial(BlockID.sandAbyss, "dirt", 0, true);
 
 IDRegistry.genBlockID("glassAbyssal"); 
 Block.createBlock("glassAbyssal", [
-{name: "Abyssal Waste Glass", texture: [["abyssalsandglass_0", 0]],inCreative: true}], BLOCK_TYPE_GLASS);
+{name: "Abyssal Waste Glass", texture: [["abyssalsandglass", 0]],inCreative: true}], BLOCK_TYPE_GLASS);
 
 IDRegistry.genBlockID("stoneAbyssal"); 
 Block.createBlock("stoneAbyssal", [
@@ -118,8 +118,8 @@ Recipes.addShaped({id: BlockID.stoneABrik, count: 4, data: 0}, [
 ], ['x', BlockID.stoneAbyssal, 0]);
 
 IDRegistry.genBlockID("grassDread");
-Block.createBlockWithRotation("grassDread", [
-{name: "Dreaded Wastlands Grass", texture: [["DLGbottom", 0], ["DrGtop", 0], ["DrGsides", 0]], inCreative: true}], BLOCK_TYPE_GRASS);
+Block.createBlock("grassDread", [
+{name: "Dreaded Wastlands Grass", texture: [["DLGbottom", 0], ["DrGtop", 0], ["DRGSides", 1]], inCreative: true}], BLOCK_TYPE_GRASS);
 ToolAPI.registerBlockMaterial(BlockID.grassDread, "dirt", 0, true);
 
 IDRegistry.genBlockID("stoneDread"); 

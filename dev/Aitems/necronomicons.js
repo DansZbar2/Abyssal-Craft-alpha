@@ -44,7 +44,19 @@ Entity.addEffect(Player.get(), 23, 6000, 2, false, false);
 });
 
 //RECIPES
-SacrificesApi.regRecipe(ItemID.trsGem,{
+SacrificesApi.regRecipe({id:BlockID.stoneDarkL, data:0},{
+            center: {id:1,data:0},//ЦЕНТР
+            item1: {id:ItemID.coralGem,data:0},//ВЕРХ
+            item2: {id:ItemID.coralGem,data:0},//НИЗ
+            item3: {id:ItemID.coralGem,data:0},//ПРАВО
+            item4: {id:ItemID.coralGem,data:0},//ЛЕВО
+            item5: {id:1,data:0},//ДИАГ?
+            item6: {id:1,data:0},//ДИАГ?
+            item7: {id:1,data:0},//ДИАГ?
+            item8: {id:1,data:0},//ДИАГ?
+});
+
+SacrificesApi.regRecipe({id:ItemID.trsGem, data:0},{
             center: {id:368,data:0},//ЦЕНТР
             item1: {id:264,data:0},//ВЕРХ
             item2: {id:264,data:0},//НИЗ
@@ -54,9 +66,9 @@ SacrificesApi.regRecipe(ItemID.trsGem,{
             item6: {id:377,data:0},//ДИАГ?
             item7: {id:377,data:0},//ДИАГ?
             item8: {id:377,data:0},//ДИАГ?
-});
-
-SacrificesApi.regRecipe(ItemID.catalObl,{
+});        
+        
+SacrificesApi.regRecipe({id:ItemID.catalObl, data:0},{
             center: {id:381,data:0},//ЦЕНТР
             item1: {id:ItemID.shardObl,data:0},//ВЕРХ
             item2: {id:ItemID.shardObl,data:0},//НИЗ
@@ -72,6 +84,7 @@ IDRegistry.genItemID("normalNecronomicon");
 Item.createItem("normalNecronomicon", "Necronomicon", {name: "necronomicon"}); 
 NecronomiconPE.regPEforItem({id:ItemID.normalNecronomicon, PEvalue:5000, maxPE:5000, tier:1}); 
 SacrificesApi.regAltar(ItemID.normalNecronomicon,{pillars:BlockID.PillarAbyssal,stones:4});
+NecronomiconPE.ChargePEFunction();
 
 IDRegistry.genItemID("abyssNecronomicon"); 
 Item.createItem("abyssNecronomicon", "Necronomicon", {name: "abyssalnomicon"}); 
@@ -87,3 +100,9 @@ NecronomiconPE.setPEfItem();
 Callback.addCallback("tick", function(){ 
 NecronomiconPE.showPE(); 
 });
+
+Recipes.addShaped({id:ItemID.keyABW, count: 1, data: 0}, [
+"oas",
+"oxa",
+"xoo"
+], ['s', ItemID.catalObl, 0, 'x', 369, 0,'s', ItemID.coralPearl, 0]);

@@ -10,7 +10,22 @@ if(!params.maxPE)
 return Logger.LogError("{regPEforItem} params.MaxPE должен быть числом", "NecroPE");
 if(!params.tier)  
 return Logger.LogError("{regPEforItem} params.tier должен быть числом", "NecroPE"); 
+if(!params.chargeFunction)  
+return Logger.LogError("{regPEforItem} params.chargeFunction должен присутсвовать", "NecroPE"); 
 PEitems.push(params);
+},
+
+addPETo: function(item, amount, transf){
+level = level || 0;     
+var data = this.getItemData(item.id);
+if(data.chargeFunction){
+ return data.chargeFunction(item, amount, transf);
+}
+else{
+ var energyAdd = Math.min(amount, Math.min(item.data - 1, transf));
+  item.data -= energyAdd;
+   return energyAdd;
+}
 },
 
 setPEfItem:function(){
@@ -28,8 +43,12 @@ return 0;
 }
 },
 
-getItemData: function(id){
-return this.PEitems[id];
+getItemData: function(idb){    
+for(var t in this.PEitems){ 
+if(this.PEitems[t].id == idb){   
+return this.PEitems[t];
+}
+}
 },
 
 getEnergyFromItem: function(item, PEnrg){
